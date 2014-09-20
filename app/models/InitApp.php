@@ -1,0 +1,45 @@
+<?
+
+class InitApp {
+
+	public static function initView() {
+		$config = \Phalcon\DI::getDefault()->get('config');
+		$view = new \Phalcon\Mvc\View();
+		$view->setTemplateAfter('main');
+		// for escaping in views
+		$view->setVar('escaper', new \Phalcon\Escaper());
+		$view->setViewsDir($config->view->dir);
+		return $view;
+	}
+
+	public static function initDb() {
+		$config = \Phalcon\DI::getDefault()->get('config');
+		$connection = new \Phalcon\Db\Adapter\Pdo\Mysql($config->database->toArray());
+		if (getenv('APPLICATION_ENV') == 'devel') {
+			$eventsManager = new \Phalcon\Events\Manager();
+			$eventsManager->attach('db', function($event, $connection) {
+				if ($event->getType() == 'beforeQuery') {
+					//Start a profile with the active connection
+					error_log($connection->getSQLStatement()."\n".json_encode($connection->getSQLVariables()));
+				}
+			});
+			$connection->setEventsManager($eventsManager);
+		}
+		return  $connection;
+	}
+
+	public static function initDispatcher() {
+		//Create an EventsManager
+		$eventsManager = new \Phalcon\Events\Manager();
+		//Attach a listener
+
+		//Listen for events produced in the dispatcher using the Security plugin
+		$eventsManager->attach('dispatch', new \Framework\Mvc\User\Security(\Phalcon\DI::getDefault()));
+
+		$dispatcher = new \Phalcon\Mvc\Dispatcher();
+		//Bind the EventsManager to the dispatcher
+		$dispatcher->setEventsManager($eventsManager);
+		return $dispatcher;
+	}
+
+}

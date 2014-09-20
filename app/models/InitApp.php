@@ -31,11 +31,6 @@ class InitApp {
 	public static function initDispatcher() {
 		//Create an EventsManager
 		$eventsManager = new \Phalcon\Events\Manager();
-		//Attach a listener
-
-		//Listen for events produced in the dispatcher using the Security plugin
-		$eventsManager->attach('dispatch', new \Framework\Mvc\User\Security(\Phalcon\DI::getDefault()));
-
 		$dispatcher = new \Phalcon\Mvc\Dispatcher();
 		//Bind the EventsManager to the dispatcher
 		$dispatcher->setEventsManager($eventsManager);

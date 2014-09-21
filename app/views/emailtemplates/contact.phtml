@@ -1,0 +1,9 @@
+<html>
+<body>
+<p>New feedback from <?=$server?></p>
+<p>Username: <?=$this->view->getVar('escaper')->escapeHtml($data->username)?></p>
+<p>Email: <?=$this->view->getVar('escaper')->escapeHtml($data->email)?></p>
+<p>Subject: <?=$data->subject ? $this->view->getVar('escaper')->escapeHtml($data->subject) : 'No subject'?></p>
+<p>Text: <?=$this->view->getVar('escaper')->escapeHtml($data->text)?></p>
+</body>
+</html>

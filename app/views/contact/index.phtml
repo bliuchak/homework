@@ -1,2 +1,68 @@
 <h2><?=$this->view->getVar('escaper')->escapeHtml($this->view->getVar('contact')->title);?></h2>
 <p><?=$this->view->getVar('escaper')->escapeHtml($this->view->getVar('contact')->text);?></p>
+
+<?=Phalcon\Tag::form(array($this->view->form->getAction(), 'onsubmit' => 'return validateContactForm();', 'name' => 'contact')) ?>
+
+	<p>
+		<label for="<?=$form->get('username')->getName()?>"><?=$form->get('username')->getLabel()?>:</label>
+<?=$form->render('username') ?>
+		<span>
+<?php
+	if (isset($this->view->getVar('errors')[$form->get('username')->getName()])) {
+		echo $this->view->getVar('escaper')->escapeHtml($this->view->getVar('errors')[$form->get('username')->getName()]);
+	}
+?>
+		</span>
+	</p>
+
+	<p>
+		<label for="<?=$form->get('email')->getName()?>"><?=$form->get('email')->getLabel()?>:</label>
+<?=$form->render('email') ?>
+		<span>
+<?php
+	if (isset($this->view->getVar('errors')[$form->get('email')->getName()])) {
+		echo $this->view->getVar('escaper')->escapeHtml($this->view->getVar('errors')[$form->get('email')->getName()]);
+	}
+?>
+		</span>
+	</p>
+
+	<p>
+		<label for="<?=$form->get('subject')->getName()?>"><?=$form->get('subject')->getLabel()?>:</label>
+<?=$form->render('subject') ?>
+		<span>
+<?php
+	if (isset($this->view->getVar('errors')[$form->get('subject')->getName()])) {
+		echo $this->view->getVar('escaper')->escapeHtml($this->view->getVar('errors')[$form->get('subject')->getName()]);
+	}
+?>
+		</span>
+	</p>
+
+	<p>
+		<label for="<?=$form->get('text')->getName()?>"><?=$form->get('text')->getLabel()?>:</label>
+<?=$form->render('text') ?>
+		<span>
+<?php
+	if (isset($this->view->getVar('errors')[$form->get('text')->getName()])) {
+		echo $this->view->getVar('escaper')->escapeHtml($this->view->getVar('errors')[$form->get('text')->getName()]);
+	}
+?>
+		</span>
+	</p>
+	</p>
+
+	<p>
+<?=$this->view->captcha->getHtml()?>
+<?if ($this->view->captcha->getError()) {?>
+		<span>
+<?=$this->view->captcha->getError()?>
+		</span>
+<? } ?>
+	</p>
+
+	<p>
+<?=$form->render('submit') ?>
+	</p>
+
+<?=Phalcon\Tag::endForm ()?>

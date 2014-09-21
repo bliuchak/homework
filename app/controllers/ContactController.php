@@ -1,8 +1,8 @@
 <?php
 
-class IndexController extends \Framework\AbstractController {
+class ContactController extends \Framework\AbstractController {
 
-	const PAGE_NAME = 'home';
+	const PAGE_NAME = 'contact';
 
 	public function indexAction() {
 		$pagesTable = new Pages();

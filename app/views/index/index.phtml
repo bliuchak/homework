@@ -1,1 +1,2 @@
-this is index page view
+<h2><?=$this->view->getVar('escaper')->escapeHtml($this->view->getVar('home')->title);?></h2>
+<p><?=$this->view->getVar('escaper')->escapeHtml($this->view->getVar('home')->text);?></p>

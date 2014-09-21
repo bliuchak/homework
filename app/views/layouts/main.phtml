@@ -17,6 +17,17 @@ echo Phalcon\Tag::stylesheetLink('css/main.css');
 		<![endif]-->
 	</head>
 	<body>
+		<header>
+<?=$this->partial('partials/header')?>
+		</header>
+		<nav>
+<?=$this->partial('partials/navbar')?>
+		</nav>
+		<section>
 <?=$this->getContent() ?>
+		</section>
+		<footer>
+<?=$this->partial('partials/footer')?>
+		</footer>
 	</body>
 </html>

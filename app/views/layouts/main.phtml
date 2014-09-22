@@ -10,6 +10,12 @@
 echo Phalcon\Tag::stylesheetLink('css/main.css');
 echo Phalcon\Tag::javascriptInclude('https://code.jquery.com/jquery.js', false);
 echo Phalcon\Tag::javascriptInclude('js/main.js');
+// attach gallery js and css only for gallery page
+if ($this->view->getVar('gallery')) {
+	echo Phalcon\Tag::stylesheetLink('css/gallery.css');
+	echo Phalcon\Tag::javascriptInclude('//cdn.jsdelivr.net/jquery.swipebox/1.2.1/jquery.swipebox.min.js');
+	echo Phalcon\Tag::stylesheetLink('//cdn.jsdelivr.net/jquery.swipebox/1.2.1/swipebox.css');
+}
 ?>
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,8 +34,18 @@ echo Phalcon\Tag::javascriptInclude('js/main.js');
 		<section>
 <?=$this->getContent() ?>
 		</section>
-		<footer>
-<?=$this->partial('partials/footer')?>
+		<footer class="footer">
+<?
+echo $this->partial('partials/footer');
+// display gallery js only on appropriate page
+if ($this->view->getVar('gallery')){
+?>
+<script type="text/javascript">
+// initialize gallery plugin
+;(function($){$('.swipebox').swipebox();})(jQuery);
+</script>
+<? } ?>
+
 		</footer>
 	</body>
 </html>

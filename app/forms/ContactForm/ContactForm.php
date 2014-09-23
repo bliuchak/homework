@@ -26,7 +26,7 @@ class ContactForm extends \Framework\Forms\Form {
 	const TEXT_NAME = 'text';
 	const TEXT_REQUIRE_MESSAGE = 'Text field should be filled.';
 
-	const SUBMIT_LABEL = 'Submit';
+	const SUBMIT_LABEL = 'Send';
 	const SUBMIT_NAME = 'submit';
 
 	public function initialize() {
@@ -77,7 +77,7 @@ class ContactForm extends \Framework\Forms\Form {
 
 		// submit
 		$element = new \Phalcon\Forms\Element\Submit(self::SUBMIT_NAME, array('id' => self::SUBMIT_NAME));
-		$element->setLabel(self::SUBMIT_LABEL);
+		$element->setDefault(self::SUBMIT_LABEL);
 		$this->add($element);
 	}
 

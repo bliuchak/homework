@@ -1,5 +1,27 @@
 /* main css file */
 
+.container {
+	max-width: 750px;
+	margin: 0 auto;
+}
+
+.navbar ul {
+	padding: 0;
+}
+
+.navbar ul li {
+	display: inline;
+}
+
+
 .footer {
 	clear: both;
+}
+
+input#username, input#email, input#subject, textarea#text {
+	width: 100%;
+}
+
+.active {
+	font-weight: bold;
 }

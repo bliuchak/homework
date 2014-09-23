@@ -25,27 +25,29 @@ if ($this->view->getVar('gallery')) {
 		<![endif]-->
 	</head>
 	<body>
-		<header>
+		<section class="container">
+			<header>
 <?=$this->partial('partials/header')?>
-		</header>
-		<nav>
+			</header>
+			<nav class="navbar">
 <?=$this->partial('partials/navbar')?>
-		</nav>
-		<section>
+			</nav>
+			<section>
 <?=$this->getContent() ?>
-		</section>
-		<footer class="footer">
+			</section>
+			<footer class="footer">
 <?
 echo $this->partial('partials/footer');
 // display gallery js only on appropriate page
 if ($this->view->getVar('gallery')){
 ?>
-<script type="text/javascript">
-// initialize gallery plugin
-;(function($){$('.swipebox').swipebox();})(jQuery);
-</script>
+	<script type="text/javascript">
+		// initialize gallery plugin
+		;(function($){$('.swipebox').swipebox();})(jQuery);
+	</script>
 <? } ?>
 
-		</footer>
+			</footer>
+		</section>
 	</body>
 </html>

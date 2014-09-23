@@ -1,7 +1,7 @@
 <ul>
-	<li><a href="/">Home</a></li>
-	<li><a href="/about">About</a></li>
-	<li><a href="/contact">Contact Us</a></li>
-	<li><a href="/gallery">Gallery</a></li>
-	<li><a href="/products">Products</a></li>
+	<li><a <?=$this->view->getControllerName() == 'index' ? 'class="active"' : ''?> href="/">Home</a></li>
+	<li><a <?=$this->view->getControllerName() == 'about' ? 'class="active"' : ''?> href="/about">About</a></li>
+	<li><a <?=$this->view->getControllerName() == 'contact' ? 'class="active"' : ''?> href="/contact">Contact Us</a></li>
+	<li><a <?=$this->view->getControllerName() == 'gallery' ? 'class="active"' : ''?> href="/gallery">Gallery</a></li>
+	<li><a <?=$this->view->getControllerName() == 'products' ? 'class="active"' : ''?> href="/products">Products</a></li>
 </ul>
